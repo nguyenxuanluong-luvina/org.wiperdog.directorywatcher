@@ -24,7 +24,6 @@ public interface ListenerWrapper extends CountingListener {
 	 * @return
 	 */
 	int getDepth();
-	
 	Listener getDelegate();
 	
 	boolean isAddOnly();

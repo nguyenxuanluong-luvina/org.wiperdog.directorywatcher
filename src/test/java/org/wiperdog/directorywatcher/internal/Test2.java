@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import jcifs.smb.SmbFile;
 
 import org.junit.After;
 import org.junit.Before;
@@ -65,6 +66,41 @@ public final class Test2 {
 		public boolean notifyCount(int count) {
 			Test2.this.count = count;
 			return true;
+		}
+
+		public boolean filterFile(SmbFile file) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean notifyModified(SmbFile target) throws IOException {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean notifyAdded(SmbFile target) throws IOException {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean notifyDeleted(SmbFile target) throws IOException {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public String getHost() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public String getUsername() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public String getPassword() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 	}

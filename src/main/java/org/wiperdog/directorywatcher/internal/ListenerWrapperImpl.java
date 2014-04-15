@@ -18,6 +18,8 @@ package org.wiperdog.directorywatcher.internal;
 import java.io.File;
 import java.io.IOException;
 
+import jcifs.smb.SmbFile;
+
 import org.wiperdog.directorywatcher.CountingListener;
 import org.wiperdog.directorywatcher.Listener;
 
@@ -102,5 +104,47 @@ public class ListenerWrapperImpl implements ListenerWrapper {
 		return true;
 	}
 
+	public boolean filterFile(SmbFile file) {
+		return delegate.filterFile(file);
+	}
+
+	public boolean notifyModified(SmbFile target) throws IOException {
+		boolean bSucceeded = delegate.notifyModified(target);
+		if (bHandleRetry) {
+			return bSucceeded;
+		} else {
+			return true;
+		}		
+	}
+
+	public boolean notifyAdded(SmbFile target) throws IOException {
+		boolean bSucceeded = delegate.notifyAdded(target);
+		if (bHandleRetry) {
+			return bSucceeded;
+		} else {
+			return true;
+		}
+	}
+
+	public boolean notifyDeleted(SmbFile target) throws IOException {
+		boolean bSucceeded = delegate.notifyDeleted(target);
+		if (bHandleRetry) {
+			return bSucceeded;
+		} else {
+			return true;
+		}
+	}
+
+	public String getUsername() {
+		return delegate.getUsername();
+	}
+
+	public String getPassword() {
+		return delegate.getPassword();
+	}
+
+	public String getHost() {
+		return delegate.getHost();
+	}
 
 }

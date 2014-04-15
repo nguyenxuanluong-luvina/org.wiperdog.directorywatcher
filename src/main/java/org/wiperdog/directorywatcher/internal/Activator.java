@@ -60,6 +60,7 @@ public final class Activator implements BundleActivator {
 						wrapper.setAddOnly(Boolean.parseBoolean(strIsAddonly));
 					}
 					WatcherService watcher = new WatcherService(wrapper);
+					System.out.println("VAODDDDDDDDDDDDDDDDDDDDD" + service.getClass().getName());
 					watcherList.add(watcher);
 					watcher.start();
 					return service;

@@ -17,6 +17,8 @@ package org.wiperdog.directorywatcher;
 
 import java.io.File;
 import java.io.IOException;
+
+import jcifs.smb.SmbFile;
 /**
  * directorywatcher リスナ インタフェース
  * このインタフェースを実装して OSGiにサービス登録すればOK
@@ -71,6 +73,7 @@ public interface Listener {
 	 * @return
 	 */
 	boolean filterFile(File file);
+	boolean filterFile(SmbFile file);
 
 	/**
 	 * 監視対象のファイルで、変更されたファイルについてよばれる。
@@ -79,6 +82,7 @@ public interface Listener {
 	 * @throws IOException
 	 */
 	boolean notifyModified(File target) throws IOException;
+	boolean notifyModified(SmbFile target) throws IOException;
 
 	/**
 	 * 監視対象のファイルで、追加されたファイルについて呼ばれる。
@@ -87,6 +91,7 @@ public interface Listener {
 	 * @throws IOException
 	 */
 	boolean notifyAdded(File target) throws IOException;
+	boolean notifyAdded(SmbFile target) throws IOException;
 	
 	/**
 	 * 監視対象のファイルで、削除されたファイルに付いて呼ばれる。
@@ -95,4 +100,12 @@ public interface Listener {
 	 * @throws IOException
 	 */
 	boolean notifyDeleted(File target) throws IOException;
+	boolean notifyDeleted(SmbFile target) throws IOException;
+	
+	/**
+	 * Function for directorywatcher work with file via network
+	 */
+	String getHost();
+	String getUsername();
+	String getPassword();	
 }
